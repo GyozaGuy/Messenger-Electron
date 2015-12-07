@@ -35,6 +35,10 @@ function createMainWindow() {
 
   WIN.loadURL('https://messenger.com');
 
+  WIN.on('focus', e => {
+    sysTray.setImage(APPICON);
+  });
+
   WIN.on('close', e => {
     if (!isQuitting) {
       e.preventDefault();
