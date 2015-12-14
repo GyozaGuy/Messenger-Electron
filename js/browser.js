@@ -18,3 +18,13 @@ Notification = function(title, options) {
 Notification.prototype = NativeNotification.prototype;
 Notification.permission = NativeNotification.permission;
 Notification.requestPermission = NativeNotification.requestPermission.bind(Notification);
+
+IPC.on('loaded', () => {
+  var chatbox = document.getElementsByClassName('_54-z')[0];
+  chatbox.innerHTML = '';
+  chatbox.onkeypress = function(e) {
+    if (e.keyCode == 13) {
+      chatbox.innerHTML = '';
+    }
+  };
+});
