@@ -38,10 +38,6 @@ function createMainWindow() {
 
   WIN.loadURL(URL);
 
-  WIN.webContents.on('did-finish-load', () => {
-    WIN.webContents.send('loaded');
-  });
-
   WIN.on('focus', e => {
     sysTray.setImage(APPICON);
   });
