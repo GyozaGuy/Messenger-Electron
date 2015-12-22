@@ -20,6 +20,9 @@ var ipc = electron.ipcMain;
 var mainWindow;
 var sysTray;
 var isQuitting = false;
+var unreadNotification = false;
+
+electron.crashReporter.start();
 
 function createMainWindow() {
   var win = new electron.BrowserWindow({
@@ -41,7 +44,10 @@ function createMainWindow() {
   });
 
   win.on('focus', e => {
-    sysTray.setImage(appicon);
+    if (unreadNotification) {
+      unreadNotification = false;
+      sysTray.setImage(appicon);
+    }
   });
 
   win.on('close', e => {
@@ -120,7 +126,10 @@ app.on('before-quit', () => {
 });
 
 ipc.on('change-icon', () => {
-  sysTray.setImage(appicon_event);
+  if (!unreadNotification) {
+    unreadNotification = true;
+    sysTray.setImage(appicon_event);
+  }
 });
 
 ipc.on('notification-click', () => {
