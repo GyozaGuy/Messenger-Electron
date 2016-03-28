@@ -99,6 +99,10 @@ app.on('ready', () => {
   sysTray.setToolTip(appname);
   sysTray.setContextMenu(contextMenu);
 
+  sysTray.on('click', () => {
+    showAndCenter(mainWindow);
+  });
+
   mainWindow = createMainWindow();
 
   var page = mainWindow.webContents;
