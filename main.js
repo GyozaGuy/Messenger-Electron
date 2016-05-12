@@ -16,13 +16,10 @@ var browserwindow = electron.BrowserWindow;
 var appicon = path.join(__dirname, 'images', 'app.png');
 var appicon_event = path.join(__dirname, 'images', 'app_event.png');
 var ipc = electron.ipcMain;
-
 var mainWindow;
 var sysTray;
 var isQuitting = false;
 var unreadNotification = false;
-
-electron.crashReporter.start();
 
 function createMainWindow() {
   var win = new electron.BrowserWindow({
