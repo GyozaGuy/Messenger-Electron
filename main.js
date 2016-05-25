@@ -67,8 +67,6 @@ function center(win) {
   win.setPosition(x, y);
 }
 
-electron.crashReporter.start();
-
 app.on('window-all-closed', () => {
   if (process.platform != 'darwin') {
     app.quit();
